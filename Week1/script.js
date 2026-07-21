@@ -1,26 +1,3 @@
-const menuToggle = document.getElementById('menu-toggle');
-const navMenu = document.getElementById('nav-menu');
-
-menuToggle.onclick = () => {
-    navMenu.classList.toggle('active');
-};
-
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.onclick = function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-
-        navMenu.classList.remove('active');
-    };
-});
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Mobil Menyu Toggle
     const menuToggle = document.getElementById('menu-toggle');
@@ -34,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const navLinks = document.querySelectorAll('nav a');
+    const navLinks = document.querySelectorAll('.header__menu-link');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (navMenu && navMenu.classList.contains('active')) {
@@ -44,9 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ===============================================
-    // CHECKPOINT 4: ƏLAQƏ FORMU VALİDASİYASI
-    // ===============================================
+    // 2. Form Validasiyası
     const form = document.getElementById('contact-form');
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
@@ -56,24 +31,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailError = document.getElementById('email-error');
     const messageError = document.getElementById('message-error');
 
-    // Email və Ad Regex Şablonları
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const hasNumbersRegex = /\d/; // Rəqəm olub-olmadığını yoxlayır
+    const hasNumbersRegex = /\d/;
 
-    // Xəta göstərmək üçün köməkçi funksiya
     function showError(input, errorElement, message) {
         errorElement.textContent = message;
         input.classList.add('has-error');
         return false;
     }
 
-function clearError(input, errorElement) {
-    errorElement.textContent = ''; // Mətni silirik ki, CSS avtomatik gizlətsin
-    input.classList.remove('has-error');
-    return true;
-}
+    function clearError(input, errorElement) {
+        errorElement.textContent = '';
+        input.classList.remove('has-error');
+        return true;
+    }
 
-    // 1. Ad Sahəsi Yoxlanışı (Boşluq + Rəqəm Yoxlanışı)
     function checkName() {
         const val = nameInput.value.trim();
         if (val === '') {
@@ -87,7 +59,6 @@ function clearError(input, errorElement) {
         }
     }
 
-    // 2. Email Sahəsi Yoxlanışı
     function checkEmail() {
         const val = emailInput.value.trim();
         if (val === '') {
@@ -99,7 +70,6 @@ function clearError(input, errorElement) {
         }
     }
 
-    // 3. Mesaj Sahəsi Yoxlanışı
     function checkMessage() {
         const val = messageInput.value.trim();
         if (val === '') {
@@ -111,12 +81,10 @@ function clearError(input, errorElement) {
         }
     }
 
-    // Canlı yoxlanış (yazdıqca input altında görünür)
     if (nameInput) nameInput.addEventListener('input', checkName);
     if (emailInput) emailInput.addEventListener('input', checkEmail);
     if (messageInput) messageInput.addEventListener('input', checkMessage);
 
-    // Form Göndəriləndə (Submit)
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -125,23 +93,18 @@ function clearError(input, errorElement) {
             const isEmailValid = checkEmail();
             const isMessageValid = checkMessage();
 
-            // Əgər bütün sahələr düzgündürsə, formun altında uğur mesajı göstər
             if (isNameValid && isEmailValid && isMessageValid) {
                 let successMessage = document.getElementById('form-success');
                 if (!successMessage) {
                     successMessage = document.createElement('div');
                     successMessage.id = 'form-success';
-                    successMessage.style.color = '#16a34a';
-                    successMessage.style.fontWeight = 'bold';
-                    successMessage.style.marginTop = '1rem';
-                    successMessage.style.textAlign = 'center';
+                    successMessage.className = 'form__success';
                     form.appendChild(successMessage);
                 }
                 
                 successMessage.textContent = 'Təşəkkür edirik! Mesajınız uğurla göndərildi.';
                 form.reset();
 
-                // 4 saniyə sonra uğur mesajını sil
                 setTimeout(() => {
                     successMessage.remove();
                 }, 4000);
