@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaTech</title>
+    <title>NovaTech - Rəqəmsal Həllər</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,13 +11,13 @@
     <header>
         <div class="logo">NovaTech</div>
         
-        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Naviqasiya menyusunu aç" aria-expanded="false" aria-controls="nav-menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <nav id="nav-menu">
+        <nav id="nav-menu" aria-label="Əsas naviqasiya">
             <ul>
                 <li><a href="#about">Haqqımızda</a></li>
                 <li><a href="#gallery">Qalereya</a></li>
@@ -43,8 +43,8 @@
                     <p>10 ildən artıq təcrübəmizlə layihələrinizi vaxtında və yüksək keyfiyyətlə təhvil veririk. Sürət, təhlükəsizlik və əlçatanlıq bizim əsas prinsipimizdir.</p>
                     
                     <div class="tech-link-box">
-                        <label>Texniki Dəstək Linkimiz:</label>
-                        <a href="https://novatech-solutions.az/super-long-url-tracking-token-id=9876543210pertyuiopasdfghjklzxcvbnm1234567890" target="_blank" class="long-link">
+                        <label id="tech-link-label">Texniki Dəstək Linkimiz:</label>
+                        <a href="https://novatech-solutions.az/super-long-url-tracking-token-id=9876543210pertyuiopasdfghjklzxcvbnm1234567890" target="_blank" rel="noopener noreferrer" class="long-link" aria-labelledby="tech-link-label">
                             https://novatech-solutions.az/super-long-url-tracking-token-id=9876543210pertyuiopasdfghjklzxcvbnm1234567890
                         </a>
                     </div>
@@ -68,13 +68,13 @@
             <h2>Layihələrimiz (Qalereya)</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="İş masası və kodlaşdırma">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="İş masasında noutbuk üzərində veb proqramlaşdırma kodu">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Proqramlaşdırma kodu">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Monitor ekranında JavaScript koda baxış">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="Komanda işi və planlama">
+                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="Proqramçı komandasının layihə planlaşdırması və müzakirəsi">
                 </div>
             </div>
         </section>
@@ -82,23 +82,23 @@
         <!-- Contact Section -->
         <section id="contact">
             <h2>Bizimlə Əlaqə</h2>
-            <form id="contact-form" novalidate>
+            <form id="contact-form" novalidate aria-label="Bizimlə əlaqə formu">
                 <div class="form-group">
-                    <label for="name">Ad və Soyad *</label>
-                    <input type="text" id="name" name="name" placeholder="Niyazi Bedelov">
-                    <span class="error-message" id="name-error"></span>
+                    <label for="name">Ad və Soyad <span class="required" aria-hidden="true">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Niyazi Bədəlov" aria-required="true" aria-describedby="name-error">
+                    <span class="error-message" id="name-error" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Elektron poçt *</label>
-                    <input type="email" id="email" name="email" placeholder="niyazibedelov1@gmail.com">
-                    <span class="error-message" id="email-error"></span>
+                    <label for="email">Elektron poçt <span class="required" aria-hidden="true">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="niyazibedelov1@gmail.com" aria-required="true" aria-describedby="email-error">
+                    <span class="error-message" id="email-error" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Mesajınız *</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Layihəniz barədə qısa məlumat..."></textarea>
-                    <span class="error-message" id="message-error"></span>
+                    <label for="message">Mesajınız <span class="required" aria-hidden="true">*</span></label>
+                    <textarea id="message" name="message" rows="4" placeholder="Layihəniz barədə qısa məlumat..." aria-required="true" aria-describedby="message-error"></textarea>
+                    <span class="error-message" id="message-error" aria-live="polite"></span>
                 </div>
 
                 <button type="submit" class="btn-submit">Göndər</button>
